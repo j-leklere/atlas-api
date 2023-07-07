@@ -1,0 +1,42 @@
+{
+  "name": "atlas",
+  "version": "1.0.0",
+  "description": "Backend of Atlas website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "start:prod": "SET NODE_ENV=production& nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j-leklere/atlas-api.git"
+  },
+  "author": "Joaquín Leklere",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/j-leklere/atlas-api/issues"
+  },
+  "homepage": "https://github.com/j-leklere/atlas-api#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^6.7.0",
+    "helmet": "^7.0.0",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.3.1",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.3",
+    "slugify": "^1.6.6",
+    "validator": "^13.9.0",
+    "xss-clean": "^0.1.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "prettier": "^2.8.8"
+  }
+}
