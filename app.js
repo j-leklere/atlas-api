@@ -1,4 +1,6 @@
 const express = require('express');
+const path = require('path');
+const cors = require('cors');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
@@ -16,6 +18,9 @@ const app = express();
 // 1) GLOBAL MIDDLEWARES
 // Set security HTTP headers
 app.use(helmet());
+
+// Cors middleware
+app.use(cors());
 
 // Development logging
 if (process.env.NODE_ENV === 'development') {

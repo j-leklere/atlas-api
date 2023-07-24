@@ -13,7 +13,7 @@ const productSchema = new mongoose.Schema(
         40,
         'El nombre del producto debe tener 40 caracteres o menos',
       ],
-      minlength: [5, 'El nombre del producto debe tener 5 caracteres o más'],
+      minlength: [4, 'El nombre del producto debe tener 4 caracteres o más'],
     },
     slug: String,
     price: {
