@@ -2,6 +2,20 @@ const mongoose = require('mongoose');
 const slugify = require('slugify');
 // const validator = require('validator');
 
+const sizeSchema = new mongoose.Schema({
+  size: { type: String, required: true },
+  sizeStock: {
+    type: Number,
+    required: [true, 'Un producto debe indicar el stock'],
+    default: 0,
+  },
+  width: { type: String },
+  height: { type: String },
+  waist: { type: String },
+  thigh: { type: String },
+  long: { type: String },
+});
+
 const productSchema = new mongoose.Schema(
   {
     name: {
@@ -30,19 +44,16 @@ const productSchema = new mongoose.Schema(
       },
       default: 0,
     },
-    size: {
-      type: String,
-      required: true,
+    sizes: [sizeSchema],
+    stock: {
+      type: Number,
+      required: [true, 'Un producto debe indicar el stock'],
+      default: 0,
     },
     category: {
       type: String,
       trim: true,
       required: [true, 'Un producto debe tener una categoría'],
-    },
-    stock: {
-      type: Number,
-      required: [true, 'Un producto debe indicar el stock'],
-      default: 0,
     },
     brand: {
       type: String,
