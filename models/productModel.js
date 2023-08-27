@@ -30,6 +30,21 @@ const productSchema = new mongoose.Schema(
       minlength: [4, 'El nombre del producto debe tener 4 caracteres o más'],
     },
     slug: String,
+    boughtAt: {
+      type: String,
+      required: [true, 'Un producto debe tener una fecha de compra'],
+    },
+    dolarAtBuy: {
+      type: Number,
+      required: [
+        true,
+        'Un producto debe tener un precio de dolar al momento de la compra',
+      ],
+    },
+    priceOriginal: {
+      type: Number,
+      required: [true, 'Un producto debe tener un precio original'],
+    },
     price: {
       type: Number,
       required: [true, 'Un producto debe tener un precio'],
