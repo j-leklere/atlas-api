@@ -50,4 +50,5 @@ class APIFeatures {
     return this;
   }
 }
-module.exports = APIFeatures;
+// module.exports = APIFeatures;
+export default APIFeatures;

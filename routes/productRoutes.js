@@ -1,6 +1,13 @@
-const express = require('express');
-const productController = require('../controllers/productController');
-const authController = require('../controllers/authController');
+// const express = require('express');
+// const productController = require('../controllers/productController');
+import express from 'express';
+import {
+  getAllProducts,
+  createProduct,
+  getProduct,
+  updateProduct,
+  deleteProduct,
+} from '../controllers/productController.js';
 
 const router = express.Router();
 
@@ -8,14 +15,11 @@ router
   .route('/')
   .get(
     // authController.protect,
-    productController.getAllProducts
+    getAllProducts
   )
-  .post(productController.createProduct);
+  .post(createProduct);
 
-router
-  .route('/:id')
-  .get(productController.getProduct)
-  .patch(productController.updateProduct)
-  .delete(productController.deleteProduct);
+router.route('/:id').get(getProduct).patch(updateProduct).delete(deleteProduct);
 
-module.exports = router;
+// module.exports = router;
+export default router;

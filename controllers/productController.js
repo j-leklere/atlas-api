@@ -1,9 +1,13 @@
-const Product = require('./../models/productModel');
-const APIFeatures = require('./../utils/apiFeatures');
-const catchAsync = require('../utils/catchAsync');
-const AppError = require('../utils/appError');
+// const Product = require('./../models/productModel');
+// const APIFeatures = require('./../utils/apiFeatures');
+// const catchAsync = require('../utils/catchAsync');
+// const AppError = require('../utils/appError');
+import Product from '../models/productModel.js';
+import APIFeatures from '../utils/apiFeatures.js';
+import catchAsync from '../utils/catchAsync.js';
+import AppError from '../utils/appError.js';
 
-exports.getAllProducts = catchAsync(async (req, res, next) => {
+export const getAllProducts = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Product.find(), req.query)
     .filter()
     .sort()
@@ -21,7 +25,7 @@ exports.getAllProducts = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getProduct = catchAsync(async (req, res, next) => {
+export const getProduct = catchAsync(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
   // product findOne({_id: req.params.id})
 
@@ -37,7 +41,7 @@ exports.getProduct = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.createProduct = catchAsync(async (req, res, next) => {
+export const createProduct = catchAsync(async (req, res, next) => {
   const newProduct = await Product.create(req.body);
 
   res.status(201).json({
@@ -48,7 +52,7 @@ exports.createProduct = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.updateProduct = catchAsync(async (req, res, next) => {
+export const updateProduct = catchAsync(async (req, res, next) => {
   const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
@@ -66,7 +70,7 @@ exports.updateProduct = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.deleteProduct = catchAsync(async (req, res, next) => {
+export const deleteProduct = catchAsync(async (req, res, next) => {
   const product = await Product.findByIdAndDelete(req.params.id);
 
   if (!product) {

@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
-const slugify = require('slugify');
-// const validator = require('validator');
+// const mongoose = require('mongoose');
+// const slugify = require('slugify');
+import mongoose from 'mongoose';
+import slugify from 'slugify';
 
 const sizeSchema = new mongoose.Schema({
   size: { type: String, required: true },
@@ -141,4 +142,5 @@ productSchema.post(/^find/, function (docs, next) {
 
 const Product = mongoose.model('Product', productSchema);
 
-module.exports = Product;
+// module.exports = Product;
+export default Product;

@@ -1,17 +1,29 @@
-const express = require('express');
-const path = require('path');
-const cors = require('cors');
-const morgan = require('morgan');
-const rateLimit = require('express-rate-limit');
-const helmet = require('helmet');
-const mongoSanitize = require('express-mongo-sanitize');
-const xss = require('xss-clean');
-const hpp = require('hpp');
+import express from 'express';
+import cors from 'cors';
+import morgan from 'morgan';
+import rateLimit from 'express-rate-limit';
+import helmet from 'helmet';
+import mongoSanitize from 'express-mongo-sanitize';
+// import xss from 'xss-clean'; // package not supported
+import hpp from 'hpp';
+// const cors = require('cors');
+// const morgan = require('morgan');
+// const rateLimit = require('express-rate-limit');
+// const helmet = require('helmet');
+// const mongoSanitize = require('express-mongo-sanitize');
+// const xss = require('xss-clean');
+// const hpp = require('hpp');
 
-const AppError = require('./utils/appError');
-const globalErrorHandler = require('./controllers/errorController');
-const productRouter = require('./routes/productRoutes');
-const userRouter = require('./routes/userRoutes');
+import AppError from './utils/appError.js';
+import globalErrorHandler from './controllers/errorController.js';
+import productRouter from './routes/productRoutes.js';
+import userRouter from './routes/userRoutes.js';
+import paymentsRouter from './routes/paymentroutes.js';
+// const AppError = require('./utils/appError');
+// const globalErrorHandler = require('./controllers/errorController');
+// const productRouter = require('./routes/productRoutes');
+// const userRouter = require('./routes/userRoutes');
+// const paymentsRouter = require('./routes/paymentroutes');
 
 const app = express();
 
@@ -42,7 +54,7 @@ app.use(express.json({ limit: '30kb' }));
 app.use(mongoSanitize());
 
 // Data sanitization against XSS
-app.use(xss());
+// app.use(xss());
 
 // Prevent parameter pollution
 app.use(
@@ -52,7 +64,7 @@ app.use(
 );
 
 // Serving static files
-app.use(express.static(`${__dirname}/public`));
+// app.use(express.static(`${__dirname}/public`));
 
 // Test middleware
 app.use((req, res, next) => {
@@ -64,6 +76,7 @@ app.use((req, res, next) => {
 // 3) ROUTES
 app.use('/api/v1/products', productRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/pago', paymentsRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
@@ -71,4 +84,5 @@ app.all('*', (req, res, next) => {
 
 app.use(globalErrorHandler);
 
-module.exports = app;
+// module.exports = app;
+export default app;
